@@ -47,3 +47,9 @@ Eğitim bulut sisteminde **[Google Colab Notebook](https://colab.research.google
 - saga_donus_yok, saga_yon, sola_donus_yok, sola_yon, yesil_isik
 
 ![Trafic Sign Detection](./images/traffic_sign_detection.png)
+
+
+> ## PID Kontrol Sistemi
+Aracımız hareketini şerit takip sistemine göre gerçekleştirmektedir. Şerit takip sisteminde de anlatıldığı gibi, kameradan gelen görüntü verisine göre bir hata değeri hesaplanmaktadır. Bu hata değerini en aza indirecek şekilde araç yönlendirilmesi yapılmaktadır. Araç yönlendirilmesi **[PID](https://tr.wikipedia.org/wiki/PID)** kontrol döngü yöntemiyle yapılmaktadır. Bir PID denetleyicisi sürekli olarak bir hata değerini, yani amaçlanan sistem durumu ile mevcut sistem durumu arasındaki farkı hesaplamaktadır. Denetleyici süreç kontrol girdisini ayarlayarak hatayı en aza indirmeye çalışmaktadır. Bu durumlara uygun ürettiği çıkış değerini aracın yön açı değerine eşitlenmesiyle otonom sürüş sistemi sağlanmıştır. PID kontrol sistemleri üç ayrı sabit parametreye ihtiyaç duymaktadır. Bu değerler **| Kp, Kd, Ki |** olmak üzere, aracımıza uygun şekilde belirlenmiştir.
+
+![PID Controller](http://stm32f4-discovery.net/wp-content/uploads/pid-controller-diagram.png)
