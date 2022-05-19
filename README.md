@@ -6,8 +6,8 @@ Aracımız üzerinde çalışan bir çok sistem bulunmaktadır. Bu sistemler aş
   - Çevre Kontrol Sistemi
   - Trafik Levhaları Tanıma Sistemi
   - PID Kontrol Sistemi
-  - Otonom Park Sistemi
   - Araç Yön Karar Sistemi
+  - Otonom Park Sistemi
 
 Tüm bu sistemleri ortak bir üst sistem tarafından kontrol edilerek araç üzerinde çalıştırılmıştır. Aracımız haritadaki şeritleri takip ederek yoluna devam etmektedir. Ayrıca
 haritanın belirli yerlerine konumlandırılan trafik işaretlerine uygun şekilde yönlendirilmektedir. Trafik işaretleri ikiye ayrılarak tasarlanmıştır. Bu ayrım _direction signs_
@@ -53,3 +53,12 @@ Eğitim bulut sisteminde **[Google Colab Notebook](https://colab.research.google
 Aracımız hareketini şerit takip sistemine göre gerçekleştirmektedir. Şerit takip sisteminde de anlatıldığı gibi, kameradan gelen görüntü verisine göre bir hata değeri hesaplanmaktadır. Bu hata değerini en aza indirecek şekilde araç yönlendirilmesi yapılmaktadır. Araç yönlendirilmesi **[PID](https://tr.wikipedia.org/wiki/PID)** kontrol döngü yöntemiyle yapılmaktadır. Bir PID denetleyicisi sürekli olarak bir hata değerini, yani amaçlanan sistem durumu ile mevcut sistem durumu arasındaki farkı hesaplamaktadır. Denetleyici süreç kontrol girdisini ayarlayarak hatayı en aza indirmeye çalışmaktadır. Bu durumlara uygun ürettiği çıkış değerini aracın yön açı değerine eşitlenmesiyle otonom sürüş sistemi sağlanmıştır. PID kontrol sistemleri üç ayrı sabit parametreye ihtiyaç duymaktadır. Bu değerler **| Kp, Kd, Ki |** olmak üzere, aracımıza uygun şekilde belirlenmiştir.
 
 ![PID Controller](http://stm32f4-discovery.net/wp-content/uploads/pid-controller-diagram.png)
+
+
+> ## Araç Yön Karar Sistemi
+Harita üzerinde şerit takip sistemi ile otonom sürüş gerçekleştiren algoritmamız, dönüş veya kavşak bölgelerindeki yön tercihlerini bu sistem sayesinde belirlemiştir. Aracın hangi yöne hareket etmesi gerektiği **[Karar Ağacı](https://tr.wikipedia.org/wiki/Karar_a%C4%9Fac%C4%B1)** algoritmasıyla belirlenmiştir. Harita üzerinde kullanılabilecek tüm yön belirten trafik işaretleri (_direction signs_) belirlenerek uygun kombinasyonları karar ağaç algoritmasının eğitim aşamasında kullanılmıştır. Oluşabilecek mantıklı kombinasyonların kullanılmasıyla algoritmanın **aşırı öğrenmesi** (_overfitting_) sağlanmıştır. Bu şekilde dönüş veya kavşaklarda aracın doğru yöne gitmesi için şerit takip sistemi anlık olarak güncellenerek ilgili şeridin (_sol veya sağ_) takipi sağlanmıştır.
+
+> ## Otonom Park Sistemi
+Haritayı ve görevlerini otonom sürüş algoritmasıyla tamalayan aracımız, son olarak uygun park alanına otonom şekilde park işlemini yapmıştır. Araç harita üzerinde şerit takip sistemi ile hareket etmesine karşı park algoritması devreye girdiğinde, haritanın park alanı kısmında herhangi bir şerit bulunmaması sebebiyle devre dışı bırakılmıştır. Park algoritması devreye girdiği andan itibaren, araç kamerasından gelen görüntü verisi üzerinde trafik işaretlerinden park tabelası tanınmaya çalışılmıştır.
+Park tabelalarından herhangi birisi kamera kadrajına girene kadar, kör sürüş diye tabir ettiğimiz sistem devrede olacak şekilde hareketi sağlanmıştır. Bu durumda araç çevre
+kontrol sistemiyle beraber belirlenen yönde hareketini sürdürmeye devam etmiştir. Araç kamerasından gelen görüntüde park tabelasının tanınmasından sonra, tabelanın kamera görüntüsündeki piksel derecesinden konumu ile araç kamerasının orta noktası arasındaki fark değeri, PID kontrol sistemine hata değeri olarak yansıtılmıştır. Çıkan bu hata değerine göre araç yönlendirilmesi gerçekleştirilmiştir. Bu hata değeri belirli periyotlarla kontrol edilmesiyle, aracın uygun park alanına parabolik bir hareket ile parkını gerçekleştirmesi sağlanmıştır.
