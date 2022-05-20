@@ -14,6 +14,8 @@ haritanın belirli yerlerine konumlandırılan trafik işaretlerine uygun şekil
 ve _stop signs_ olarak belirlenmiştir. Direction Signs olarak belirlenen levhaların tamamı aracın doğru konuma yönlendirilmesini sağlarken, Stop Signs olarak belirlenen levhalar
 araç için duruş/kalkış noktaları olarak kararlaştırılmıştır.
 
+Aracımızın harita üzerinde gerçekleştirdiği otonom sürüş sistemine ait test sürüş videosuna **[Self Driving Car](https://youtu.be/Yh4sCAuJSCA)** bağlantısından ulaşabilirsiniz.
+
 Tasarlanan ve kodlanan otonom sürüş algoritmaları [Webots](https://cyberbotics.com/) simülasyonu üzerinde çalıştırılarak test edilmiştir. Kullanılan simülasyon ortamına ait
 harita tasarımı **map.wbt** dosyası olarak paylaşılmıştır. Haritanın genel kuş bakışı görüntüsü aşağıda gösterilmiştir.
 
