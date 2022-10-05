@@ -1,3 +1,7 @@
+> ### Proje Ekip Arkadaşları :
+- github/sukrugorur
+- github/dilaraerdogan 
+
 > # **Self Driving Car ( Teknofest Robotaksi )**
 Teknofest Robotaksi yarışmasına ait haritayı başarılı şekilde tamamlayan otonom araç algoritması tasarlanıp simülasyon üzerinde test edilerek kodlanmıştır.
 Araç üzerinde çalıştırılan algoritma haritayı doğru ve başarılı bir şekilde geçip son olarak park alanlarından uygun olan kısıma park edip görevlerini tamamlamıştır.
